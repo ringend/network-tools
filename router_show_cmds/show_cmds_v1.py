@@ -53,10 +53,8 @@ with open(args.csv, "r") as file:
                                          username=ssh_username, password=ssh_password)
 
             ### Write to Screen and File ###
-            print("Connecting to " + device_row['device_ip'] + "...")
-            fileout.write(datetime.today())
-            fileout.write("===Network Device: " + device_row['device_ip'] + "===\n\r")
-            #fileout.write("===Network Device: " + device_row['device_ip'] + datetime.today() + "===\n\r")
+            print("Connecting to " + device_row['device_ip'] + " @ " + format(datetime.today()) + " ...")
+            fileout.write("===Network Device: " + device_row['device_ip'] + " @ "+ format(datetime.today()) + "\n\r")
 
             ### Commands to Run on Device ###
             #fileout.write(ssh_session.send_command("sh inv"))
