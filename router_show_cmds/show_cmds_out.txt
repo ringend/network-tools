@@ -1,7 +1,6 @@
-===Network Device: 192.168.50.104 @ 2019-04-26 23:13:26.480826
-Interface              IP-Address      OK? Method Status                Protocol
-GigabitEthernet1       192.168.50.104  YES NVRAM  up                    up      
-GigabitEthernet2       unassigned      YES NVRAM  administratively down down    
-GigabitEthernet3       unassigned      YES NVRAM  administratively down down    
-GigabitEthernet4       unassigned      YES NVRAM  administratively down down    
+***Connection Failure: 111.100.10.001 @ 2019-04-27 00:53:17.648279
+===Network Device: 192.168.50.104 @ 2019-04-27 00:53:22.188635
+C        192.168.50.0/24 is directly connected, GigabitEthernet1
+L        192.168.50.104/32 is directly connected, GigabitEthernet1
+***Connection Failure: 666.168.50.105 @ 2019-04-27 00:53:22.817657
 
