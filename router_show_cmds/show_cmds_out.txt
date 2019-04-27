@@ -1,16 +1,0 @@
-===Network Device: 192.168.50.104===
-NAME: "Chassis", DESCR: "Cisco CSR1000V Chassis"
-PID: CSR1000V          , VID: V00, SN: 9FFJQKCUK6Z
-
-NAME: "module R0", DESCR: "Cisco CSR1000V Route Processor"
-PID: CSR1000V          , VID: V00, SN: JAB1303001C
-
-NAME: "module F0", DESCR: "Cisco CSR1000V Embedded Services Processor"
-PID: CSR1000V          , VID:    , SN:            
-
-Interface              IP-Address      OK? Method Status                Protocol
-GigabitEthernet1       192.168.50.104  YES NVRAM  up                    up      
-GigabitEthernet2       unassigned      YES NVRAM  administratively down down    
-GigabitEthernet3       unassigned      YES NVRAM  administratively down down    
-GigabitEthernet4       unassigned      YES NVRAM  administratively down down    
-
