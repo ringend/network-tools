@@ -4,7 +4,7 @@
 # Requires package: python3-netmiko
 ##########################################
 #Run it with the following: 
-#python3 name_of_program.py -c ip_addresses.csv
+#python3 name_of_program.py -c device_name_or_ip.csv
 #
 #You will need a CSV file with the following structure (must include "device_ip"):
 #device_ip
@@ -42,15 +42,12 @@ with open(args.csv, "r") as file:
             ### SSH to Device ###
             ssh_session = ConnectHandler(device_type='cisco_ios', ip=device_row['device_ip'],
                                          username=ssh_username, password=ssh_password)
-            print("-------- {0} ---------".format(device_row['device_ip']))
-            ### Commands to Run on Device ###
-            #print(ssh_session.send_command("sh inv"))
-            #print(ssh_session.send_command("sh ip int br"))
-            #fileout.write("Network Element: ".format(device_row['device_ip']))
-            print("Connecting to " + device_row['device_ip'])
-            fileout.write("Network Device: " + device_row['device_ip'] + "\n\r")
+            print("Connecting to " + device_row['device_ip'] + "...")
+            fileout.write("===Network Device: " + device_row['device_ip'] + "===\n\r")
 
             ### Commands to Run on Device ###
-            #print(ssh_session.send_command("sh inv"))
+            fileout.write(ssh_session.send_command("sh inv"))
             fileout.write(ssh_session.send_command("sh ip int br"))
+            fileout.write("\n\r")
+
         fileout.close()
