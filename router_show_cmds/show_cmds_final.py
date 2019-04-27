@@ -11,18 +11,18 @@
 #10.10.1.1
 #10.10.1.2
 #10.10.1.3
-#
+
 ###############################################################
 # Remember to set the username/password section below
 ###############################################################
 import getpass
 ############## USERNAME/PASSWORD SECTION ######################
 ##### Uncommmit next two line for user input of username/password ###
-#ssh_username = input("SSH username: ")
-#ssh_password = getpass.getpass('SSH Password: ')
+ssh_username = input("SSH username: ")
+ssh_password = getpass.getpass('SSH Password: ')
 ##### Uncommit next two lines for hardcoded username/password ###
-ssh_username = "cisco"
-ssh_password = "cisco"
+#ssh_username = "cisco"
+#ssh_password = "cisco"
 ###############################################################
 
 ############## Create Output & Log Files ######################
