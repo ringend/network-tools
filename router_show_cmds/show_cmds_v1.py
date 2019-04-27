@@ -14,12 +14,16 @@
 #
 #########################################
 
+
+
 import getpass
 import re
 import csv
 
 from argparse import ArgumentParser
 from netmiko import ConnectHandler
+
+fileout=open("show_cmds_out.txt","w+")
 
 ### Main Body ###
 if __name__ == "__main__":
@@ -40,5 +44,13 @@ with open(args.csv, "r") as file:
                                          username=ssh_username, password=ssh_password)
             print("-------- {0} ---------".format(device_row['device_ip']))
             ### Commands to Run on Device ###
-            print(ssh_session.send_command("sh inv"))
-            print(ssh_session.send_command("sh ip int br"))
+            #print(ssh_session.send_command("sh inv"))
+            #print(ssh_session.send_command("sh ip int br"))
+            #fileout.write("Network Element: ".format(device_row['device_ip']))
+            print("Connecting to " + device_row['device_ip'])
+            fileout.write("Network Device: " + device_row['device_ip'] + "\n\r")
+
+            ### Commands to Run on Device ###
+            #print(ssh_session.send_command("sh inv"))
+            fileout.write(ssh_session.send_command("sh ip int br"))
+        fileout.close()
