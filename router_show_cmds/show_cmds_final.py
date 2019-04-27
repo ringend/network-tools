@@ -45,37 +45,26 @@ if __name__ == "__main__":
     fileout=open("show_cmds_out.txt","w+")
 
 ### Begin Main loop ###
+print("Beginning Connections @ " + format(datetime.today()))
 with open(args.csv, "r") as file:
         reader = csv.DictReader(file)
         for device_row in reader:
             ### SSH to Device ###
-            ssh_session = ConnectHandler(device_type='cisco_ios', ip=device_row['device_ip'],
-                                         username=ssh_username, password=ssh_password)
-
-            ### Write to Screen and File ###
-            #print("Connecting to " + device_row['device_ip'] + " @ " + format(datetime.today()) + " ...")
-            #fileout.write("===Network Device: " + device_row['device_ip'] + " @ "+ format(datetime.today()) + "\n\r")
-            #print(ssh_session.find_prompt())
-
-############# New Stuff ############
-            print("Connecting to " + device_row['device_ip'] + " @ " + format(datetime.today()) + " ...")
-            if ssh_session.find_prompt():
-                print("Connection Made")
+            try:
+                ssh_session = ConnectHandler(device_type='cisco_ios', ip=device_row['device_ip'], username=ssh_username, password=ssh_password)
+                print("Connection Successful to " + device_row['device_ip'] + " @ " + format(datetime.today()))
                 fileout.write("===Network Device: " + device_row['device_ip'] + " @ "+ format(datetime.today()) + "\n\r")
 
                 ### Commands to Run on Device ###
-                #fileout.write(ssh_session.send_command("sh inv"))
-                fileout.write(ssh_session.send_command("sh ip int br"))
+                #fileout.write(ssh_session.send_command("sh ip int brief"))
+                fileout.write(ssh_session.send_command("show ip route connect | include directly"))
                 fileout.write("\n\r")
                 ssh_session.disconnect()
 
-            else:
-                print("Connection Failed")
-                fileout.write("***Failed Connection to Network Device: " + device_row['device_ip'] + " @ "+ format(datetime.today()) + "\n\r")
-
-            #fileout.write("===Network Device: " + device_row['device_ip'] + " @ "+ format(datetime.today()) + "\n\r")
-            #print(ssh_session.find_prompt())
-############ End New Stuff ###############
+            except:
+                ### In  Case of a Failed SSH Connection ###
+                print("Connection Failed to " + device_row['device_ip'] + " @ " + format(datetime.today()))
+                fileout.write("***Connection Failure: " + device_row['device_ip'] + " @ "+ format(datetime.today()) + "\n\r")
 
         print("Finished")
         fileout.close()
